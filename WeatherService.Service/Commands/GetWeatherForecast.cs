@@ -19,7 +19,7 @@ public class GetWeatherForecast(ISmhiProvider smhiProvider) : IWeatherForecast
         var stationWindData = await smhiProvider.GetStationWindDataAsync(stationId, ApiPeriodToSmhiPeriod(period));
         
         var stationTemperatureDataDictionary = stationTemperatureData?.Value.ToDictionary(d => d.DateTimeUtc, d => d.Value);
-        var stationWindDataKeysDictionary = stationTemperatureData?.Value.ToDictionary(d => d.DateTimeUtc, d => d.Value);
+        var stationWindDataKeysDictionary = stationWindData?.Value.ToDictionary(d => d.DateTimeUtc, d => d.Value);
 
         var allDates = stationTemperatureDataDictionary.Keys.Union(stationWindDataKeysDictionary.Keys).OrderByDescending(d => d).ToList();
 
