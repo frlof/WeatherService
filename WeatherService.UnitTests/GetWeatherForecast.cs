@@ -32,14 +32,14 @@ public class GetWeatherForecastTests
         var result = await _service.GetWeatherForecastAsync(null, null);
 
         // Assert
-        result.Should().NotBeNull();
-        result.Station.Should().HaveCount(1);
-        result.Station.Single().Name.Should().Be("Station1");
-        result.Station.Single().WeatherData.Should().HaveCount(1);
+        Assert.NotNull(result);
+        Assert.Single(result.Station);
+        Assert.Equal("Station1", result.Station.Single().Name);
+        Assert.Single(result.Station.Single().WeatherData);
         
         // Both temperature and wind data should be present in the same station
-        result.Station.Single().WeatherData.Single().TemperatureC.Should().Be("20.5");
-        result.Station.Single().WeatherData.Single().WindSpeed.Should().Be("5.2");
+        Assert.Equal("20.5", result.Station.Single().WeatherData.Single().TemperatureC);
+        Assert.Equal("5.2", result.Station.Single().WeatherData.Single().WindSpeed);
     }
 
     [Fact]
@@ -58,12 +58,12 @@ public class GetWeatherForecastTests
         var result = await _service.GetWeatherForecastAsync("123", Period.LatestHour);
 
         // Assert
-        result.Should().NotBeNull();
-        result.Station.Should().HaveCount(1);
-        result.Station.Single().Name.Should().Be("Station1");
-        result.Station.Single().WeatherData.Should().HaveCount(1);
-        result.Station.Single().WeatherData.Single().TemperatureC.Should().Be("18.3");
-        result.Station.Single().WeatherData.Single().WindSpeed.Should().Be("3.1");
+        Assert.NotNull(result);
+        Assert.Single(result.Station);
+        Assert.Equal("Station1", result.Station.Single().Name);
+        Assert.Single(result.Station.Single().WeatherData);
+        Assert.Equal("18.3", result.Station.Single().WeatherData.Single().TemperatureC);
+        Assert.Equal("3.1", result.Station.Single().WeatherData.Single().WindSpeed);
     }
 
     [Theory]
