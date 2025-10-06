@@ -90,23 +90,23 @@ public class GetWeatherForecastTests
     {
         return new SmhiStationSetData
         {
-            Station = new List<SmhiStationSetDetails>
-            {
+            Station =
+            [
                 new()
                 {
                     Name = stationName,
                     Key = stationKey,
-                    Value = new List<SmhiValue>
-                    {
+                    Value =
+                    [
                         new()
                         {
                             Date = DateTimeOffset.UtcNow.ToUnixTimeMilliseconds(),
                             Value = value,
                             Quality = "G"
                         }
-                    }
+                    ]
                 }
-            }
+            ]
         };
     }
 
@@ -119,15 +119,15 @@ public class GetWeatherForecastTests
                 Name = stationName,
                 Key = "test-key"
             },
-            Value = new List<SmhiValue>
-            {
+            Value =
+            [
                 new()
                 {
                     Date = DateTimeOffset.UtcNow.ToUnixTimeMilliseconds(),
                     Value = value,
                     Quality = "G"
                 }
-            }
+            ]
         };
     }
 }

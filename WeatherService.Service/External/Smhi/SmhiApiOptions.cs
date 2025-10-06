@@ -6,5 +6,3 @@ public class SmhiApiOptions
     
     public string BaseUrl { get; set; } = string.Empty;
 }
-
-

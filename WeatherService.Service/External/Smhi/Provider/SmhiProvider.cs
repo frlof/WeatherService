@@ -1,7 +1,5 @@
 ﻿using Microsoft.Extensions.Options;
-using System.Reflection.Metadata;
 using System.Text.Json;
-using WeatherService.Contracts.WeatherForecast;
 using WeatherService.Service.External.Smhi.Models;
 
 namespace WeatherService.Service.External.Smhi.Provider;
