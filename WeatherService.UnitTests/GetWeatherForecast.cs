@@ -36,8 +36,6 @@ public class GetWeatherForecastTests
         Assert.Single(result.Station);
         Assert.Equal("Station1", result.Station.Single().Name);
         Assert.Single(result.Station.Single().WeatherData);
-        
-        // Both temperature and wind data should be present in the same station
         Assert.Equal("20.5", result.Station.Single().WeatherData.Single().TemperatureC);
         Assert.Equal("5.2", result.Station.Single().WeatherData.Single().WindSpeed);
     }
