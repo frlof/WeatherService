@@ -6,7 +6,7 @@ namespace WeatherService.Api.Controllers
 {
     [ApiController]
     [Route("[controller]")]
-    public class WeatherForecastController(ILogger<WeatherForecastController> logger, IWeatherForecast weatherForecast) : ControllerBase
+    public class WeatherForecastController(ILogger<WeatherForecastController> logger, IWeatherForecast weatherForecast, IConfiguration configuration) : ControllerBase
     {
 
         [HttpGet(Name = "GetWeatherForecast")]
@@ -15,6 +15,20 @@ namespace WeatherService.Api.Controllers
             [FromQuery] Period? period
         )
         {
+            var configuredApiKey = configuration["ApiKey"];
+            if (string.IsNullOrEmpty(configuredApiKey))
+            {
+                logger.LogError("API key is not configured properly");
+                return StatusCode(500, "Server configuration error");
+            }
+
+            if (!Request.Headers.TryGetValue("X-API-Key", out var apiKey) || 
+                apiKey != configuredApiKey)
+            {
+                logger.LogWarning("Unauthorized access attempt with invalid API key");
+                return Unauthorized("Invalid API key");
+            }
+
             logger.LogInformation("GetWeatherForecast endpoint called with StationId: {StationId}, Period: {Period}", stationId, period);
 
             if((stationId is null) != (period is null))
