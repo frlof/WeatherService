@@ -9,5 +9,6 @@
 
 ## Features TODO
 
+- [ ] **In-Memory Caching**: Add in-memory caching for improved performance
 - [ ] **Database Caching**: Add database to cache data fetched from SMHI
 - [ ] **Redis Cache**: Add Redis for high-performance caching to improve response times
